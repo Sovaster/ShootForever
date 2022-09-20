@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Добавление нового сеансы</title>
+</head>
+<body>
+
+<div th:insert="head/header"></div>
+
+<div align="center">
+    <h1>Добавление сеанса</h1>
+    <form th:action = "${'/seansi/add'}" method="post" th:object="${seansi}">
+
+        <div>Введите дату</div>
+        <input th:field="*{dataSeansa}" style="width: 250px; height: 40px; margin: 2px" type="date" name="dataSeansa" placeholder="Введите дату"><br>
+        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('dataSeansa')}" th:errors="*{dataSeansa}"></div><br>
+
+        <div>Введите время</div>
+        <input th:field="*{timeSeansa}" style="width: 250px; height: 40px; margin: 2px" type="time" name="timeSeansa" placeholder="Введите время"><br>
+        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('timeSeansa')}" th:errors="*{timeSeansa}"></div><br>
+
+        <div>Введите продолжительность</div>
+        <input th:field="*{prodoljSeansa}" style="width: 250px; height: 40px; margin: 2px" type="time" name="prodoljSeansa" placeholder="Введите продолжительность"><br>
+        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('prodoljSeansa')}" th:errors="*{prodoljSeansa}"></div><br>
+
+        <div>Введите кол-во патронов</div>
+        <input th:field="*{colichBulletSeansa}" style="width: 250px; height: 40px; margin: 2px" type="number" name="colichBulletSeansa" placeholder="Введите кол-во патронов"><br>
+        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('colichBulletSeansa')}" th:errors="*{colichBulletSeansa}"></div><br>
+
+        <div>Введите цену сеанса</div>
+        <input th:field="*{priceSeansa}" style="width: 250px; height: 40px; margin: 2px" type="number" name="priceSeansa" placeholder="Введите цену"><br>
+        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('priceSeansa')}" th:errors="*{priceSeansa}"></div><br>
+
+        <select style="margin-bottom: 10px" name="weapons">
+            <div  th:each="wepo : ${weapon}">
+                <option th:value="${wepo.id}" th:text="${'Оружие: '+ wepo.nazvanieWeapon +', Тип патронов: '+ wepo.tipPatrWeapon}"></option>
+            </div>
+        </select>
+        <br>
+        <select style="margin-bottom: 10px" name="poligon">
+            <div  th:each="pols : ${poligons}">
+                <option th:value="${pols.id}" th:text="${'Адрес: г.'+ pols.getAdresPoligon().getGorodPoligona() +', ул.'+ pols.getAdresPoligon().getStreetPoligona() +', д.'+ pols.getAdresPoligon().getDomPoligona() +', к.'+ pols.getAdresPoligon().getKorpusPoligona()}"></option>
+            </div>
+        </select>
+        <br>
+        <button type="submit">Добавить сеанс</button>
+    </form>
+</div>
+
+</body>
+</html>

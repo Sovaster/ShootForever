@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+    <title>Адреса</title>
+</head>
+<body>
+
+<div th:insert="head/header"></div>
+
+<div align="center">
+    <h1>-ВСЕ АДРЕСА-</h1>
+    <h4 style="margin: 5px"><a href="/poligons/add"> Добавить адрес</a></h4>
+    <table>
+        <div th:each="apl : ${adresPoligons}">
+            <h5>---------------------------------------------------------</h5>
+            <h4 th:text="${'Адрес: г.'+apl.getGorodPoligona()+','}" style="display: inline-block"></h4>
+            <h4 th:text="${'ул.'+apl.getStreetPoligona()+','}" style="display: inline-block"></h4>
+            <h4 th:text="${'д.'+apl.getDomPoligona()+','}" style="display: inline-block"></h4>
+            <h4 th:text="${'k.'+apl.getKorpusPoligona()}" style="display: inline-block"></h4>
+            <h5><a th:href="'/poligons/' + ${apl.id} + '/edit'">Редактировать</a></h5>
+            <form th:action="'/poligons/' + ${apl.id} + '/remove'" method="post" th:object="${adresPoligons}">
+                <button type="submit">Удалить</button>
+            </form>
+        </div>
+    </table>
+</div>
+
+</body>
+</html>

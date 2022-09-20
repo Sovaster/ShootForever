@@ -1,0 +1,10 @@
+package com.example.ShootForever.Repo;
+
+import com.example.ShootForever.Models.Seansi;
+import com.example.ShootForever.Models.Weapon;
+import org.springframework.data.repository.CrudRepository;
+
+public interface SeansiRepository extends CrudRepository<Seansi,Long>
+{
+
+}

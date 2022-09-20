@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+    <title>Сеансы</title>
+</head>
+<body>
+
+<div th:insert="head/header"></div>
+
+<div align="center">
+    <h1>-ВСЕ СЕАНСЫ-</h1>
+    <h4 style="margin: 5px"><a href="/seansi/add"> Добавить сеанс</a></h4>
+    <table>
+        <div th:each="sea : ${seansi}">
+            <h5>---------------------------------------------------------</h5>
+            <h4 th:text="${'Дата сеанса: '+sea.getDataSeansa()}" ></h4>
+            <h4 th:text="${'Время сеанса: '+sea.getTimeSeansa()}" ></h4>
+            <h4 th:text="${'Продолжительность сеанса: '+sea.getProdoljSeansa()}" ></h4>
+            <h5><a th:href="'/seansi/' + ${sea.id}"> Подробнее </a></h5>
+        </div>
+    </table>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+  <title>Лицензии</title>
+</head>
+<body>
+
+<div th:insert="admin/headerAdmin"></div>
+
+<div align="center">
+  <h1>-ВСЕ СОТРУДНИКИ-</h1>
+  <table>
+    <div th:each="us : ${users}">
+      <h5>---------------------------------------------------------</h5>
+      <h4 th:text="${'ФИО: '+us.getFamiliaSotrudnika()}" style="display: inline-block;margin-left: 10px"></h4>
+      <h4 th:text="${us.getNameSotrudnika()}" style="display: inline-block"></h4>
+      <h4 th:text="${us.getNameSotrudnika()}" style="display: inline-block"></h4>
+      <h4 th:text="${'Телефон: '+us.telephonSotrudnika}" style="margin-left: 10px" ></h4>
+      <h4 th:text="${'Дата рождения: '+us.birthdaySotrudnika}" style="margin-left: 10px"></h4>
+      <h4 th:text="${'Почта: '+us.mailSotrudnika}" style="margin-left: 10px"></h4>
+      <h4 th:text="${'Паспорт: '+us.pasportSotrudnika}" style="margin-left: 10px"></h4>
+      <h4 th:value="${us.roles}" th:text="${'Роль: '+us.getRoles()}"></h4>
+<!--      <form th:action="'/allUsers/' + ${us.id} + '/remove'" method="post" th:object="${users}">-->
+<!--        <button type="submit">Удалить</button>-->
+<!--      </form>-->
+    </div>
+  </table>
+</div>
+
+</body>
+</html>

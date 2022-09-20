@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Добавление нового города</title>
+</head>
+<body>
+
+<div th:insert="head/header"></div>
+
+<div align="center">
+    <h1>Добавление города</h1>
+    <form th:action = "${'/gorodPostav/add'}" method="post" th:object="${gorodPost}">
+
+        <input th:field="*{nazvanieGorodaPost}" style="width: 250px; height: 40px; margin: 2px" type="text" name="nazvanieGorodaPost" placeholder="Введите название города"><br>
+        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('nazvanieGorodaPost')}" th:errors="*{nazvanieGorodaPost}"></div><br>
+        <div th:if="${#messages}">
+            <p th:text="${message}"></p>
+        </div>
+        <button type="submit">Добавить город</button>
+    </form>
+</div>
+
+</body>
+</html>

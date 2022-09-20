@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+  <title>Подробности</title>
+</head>
+<body>
+
+<div th:insert="head/header"></div>
+
+<div align="center" th:each="wep : ${weapon}">
+  <h1>Подробная информация про оружие</h1>
+    <h4 th:text="${'Название оружия: '+wep.getNazvanieWeapon()}" ></h4>
+    <h4 th:text="${'Тип патронов: '+wep.getTipPatrWeapon()}" ></h4>
+    <h4 th:text="${'Год производства: '+wep.getGodProizWeapon()}" ></h4>
+    <h4 th:text="${'Поставщик оружия: '+wep.getPostav().getNazvaniePostav()}" ></h4>
+    <h4 th:text="${'Город поставки: '+wep.getPostav().getGorodPost().getNazvanieGorodaPost()}" ></h4>
+    <h4 th:text="${'Номер лицензии: '+wep.getLicenzia().getNomerLicenzii()}" ></h4>
+    <h4 th:text="${'Орган выдачи лицензии: '+wep.getLicenzia().getOrganLicenzii()}" ></h4>
+    <h4 th:text="${'Дата начала лицензии: '+wep.getLicenzia().getDataStartLicenzii()}" ></h4>
+    <h4 th:text="${'Дата окончания лицензии: '+wep.getLicenzia().getDataFinalLicenzii()}" ></h4>
+  <form th:action="'/weapon/' + ${wep.getId()} + '/remove'" method="post">
+    <button type="submit">Удалить</button>
+  </form>
+</div>
+
+</body>
+</html>

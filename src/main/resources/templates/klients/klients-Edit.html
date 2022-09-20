@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Редактирование поста</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<div th:insert="head/header"></div>
+
+<div align="center" th:each="klt : ${klienti}">
+    <h1>Редактирование клиента</h1>
+    <form th:action="'/klients/' + ${klt.id} + '/edit'" method="post" th:object="${klienti}">
+
+        <input th:field="*{familiaKlienta}" th:value="${klt.getFamiliaKlienta()}" style="width: 250px; height: 40px; margin: 2px" type="text" name="familiaKlienta" placeholder="Введите фамилию"><br>
+        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('familiaKlienta')}" th:errors="*{familiaKlienta}"></div><br>
+
+        <input th:field="*{nameKlienta}" th:value="${klt.getNameKlienta()}" style="width: 250px; height: 40px; margin: 2px" type="text" name="nameKlienta" placeholder="Введите имя"><br>
+        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('nameKlienta')}" th:errors="*{nameKlienta}"></div><br>
+
+        <input th:field="*{otchKlienta}" th:value="${klt.getOtchKlienta()}" style="width: 250px; height: 40px; margin: 2px" type="text" name="otchKlienta" placeholder="Введите отчество"><br>
+        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('otchKlienta')}" th:errors="*{otchKlienta}"></div><br>
+
+        <input th:field="*{telephonKlienta}" th:value="${klt.getTelephonKlienta()}" style="width: 250px; height: 40px; margin: 2px" type="text" name="telephonKlienta" placeholder="Введите номер телефона"><br>
+        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('telephonKlienta')}" th:errors="*{telephonKlienta}"></div><br>
+
+        <input th:field="*{birthdayKlienta}" th:value="${klt.getBirthdayKlienta()}" style="width: 250px; height: 40px; margin: 2px" type="date" name="birthdayKlienta" th:max="${date}" placeholder="Введите дату рождения"><br>
+        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('birthdayKlienta')}" th:errors="*{birthdayKlienta}"></div><br>
+
+        <input th:field="*{mailKlienta}" th:value="${klt.getMailKlienta()}" style="width: 250px; height: 40px; margin: 2px" type="email" name="mailKlienta" placeholder="Введите почту"><br>
+        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('mailKlienta')}" th:errors="*{mailKlienta}"></div><br>
+
+        <input th:field="*{pasportKlienta}" th:value="${klt.getPasportKlienta()}" style="width: 250px; height: 40px; margin: 2px" type="number" name="pasportKlienta" placeholder="Введите паспорт"><br>
+        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('pasportKlienta')}" th:errors="*{pasportKlienta}"></div><br>
+
+        <button type="submit">Сохранить</button>
+    </form>
+</div>
+
+</body>
+</html>

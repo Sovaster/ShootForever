@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Добавление нового адреса</title>
+</head>
+<body>
+
+<div th:insert="head/header"></div>
+
+<div align="center">
+    <h1>Добавление адреса</h1>
+    <form th:action = "${'/poligons/add'}" method="post" th:object="${adresPoligon}">
+
+        <input th:field="*{gorodPoligona}" style="width: 250px; height: 40px; margin: 2px" type="text" name="gorodPoligona" placeholder="Введите город"><br>
+        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('gorodPoligona')}" th:errors="*{gorodPoligona}"></div><br>
+
+        <input th:field="*{streetPoligona}" style="width: 250px; height: 40px; margin: 2px" type="text" name="streetPoligona" placeholder="Введите улицу"><br>
+        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('streetPoligona')}" th:errors="*{streetPoligona}"></div><br>
+
+        <input th:field="*{domPoligona}" style="width: 250px; height: 40px; margin: 2px" type="number" name="domPoligona" placeholder="Введите дом"><br>
+        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('domPoligona')}" th:errors="*{domPoligona}"></div><br>
+
+        <input th:field="*{korpusPoligona}" style="width: 250px; height: 40px; margin: 2px" type="number" name="korpusPoligona" placeholder="Введите корпус"><br>
+        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('korpusPoligona')}" th:errors="*{korpusPoligona}"></div><br>
+
+        <button type="submit">Добавить адрес</button>
+    </form>
+</div>
+
+</body>
+</html>

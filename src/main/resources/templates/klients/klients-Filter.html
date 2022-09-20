@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+    <title>Поиск клиента</title>
+</head>
+<body>
+
+<div th:insert="head/Header"></div>
+
+<div align="center">
+    <h1>Поиск клиента</h1>
+    <form method="post" th:action="${'/klients/filter/result'}">
+        <input type="text" name="familiaKlienta">
+        <button type="submit">Найти</button>
+        <div style="margin: 10px" th:each="klt : ${result}">
+            <h5>---------------------------------------------------------</h5>
+            <h4 th:text="${'ФИО: '+klt.familiaKlienta}" style="display: inline-block;margin-left: 10px"></h4>
+            <h4 th:text="${klt.nameKlienta}" style="display: inline-block"></h4>
+            <h4 th:text="${klt.otchKlienta}" style="display: inline-block"></h4>
+            <h5><a th:href="'/klients/' + ${klt.id}"> Подробнее </a></h5>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

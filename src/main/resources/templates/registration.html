@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+    <title>Регистрация</title>
+</head>
+<body>
+<div align="center">
+    <div th:if="${#messages}">
+        <p th:text="${message}"></p>
+    </div>
+    <h1>-РЕГИСТРАЦИЯ-</h1>
+    <form th:action="@{/registration}" method="post" th:object="${user}">
+
+        <label>Фамилия</label>
+        <div style="width: 250px; height: 40px; margin: 1px"><input th:field="*{familiaSotrudnika}" type="text" name="familiaSotrudnika"/></div>
+        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('familiaSotrudnika')}" th:errors="*{familiaSotrudnika}"></div>
+
+        <label>Имя</label>
+        <div style="width: 250px; height: 40px; margin: 1px"><input th:field="*{nameSotrudnika}" type="text" name="nameSotrudnika"/></div>
+        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('nameSotrudnika')}" th:errors="*{nameSotrudnika}"></div>
+
+        <label>Отчество</label>
+        <div style="width: 250px; height: 40px; margin: 1px"><input th:field="*{otchSotrudnika}" type="text" name="otchSotrudnika"/></div>
+        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('otchSotrudnika')}" th:errors="*{otchSotrudnika}"></div>
+
+        <label>Паспорт</label>
+        <div style="width: 250px; height: 40px; margin: 1px"><input th:field="*{pasportSotrudnika}" type="number" name="pasportSotrudnika"/></div>
+        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('pasportSotrudnika')}" th:errors="*{pasportSotrudnika}"></div>
+
+        <label>Телефон</label>
+        <div style="width: 250px; height: 40px; margin: 1px"><input th:field="*{telephonSotrudnika}" type="number" name="telephonSotrudnika"/></div>
+        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('telephonSotrudnika')}" th:errors="*{telephonSotrudnika}"></div>
+
+        <label>Почта</label>
+        <div style="width: 250px; height: 40px; margin: 1px"><input th:field="*{mailSotrudnika}" type="email" name="mailSotrudnika"/></div>
+        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('mailSotrudnika')}" th:errors="*{mailSotrudnika}"></div>
+
+        <label>Дата рождения</label>
+        <div style="width: 250px; height: 40px; margin: 1px"><input th:field="*{birthdaySotrudnika}" type="date" name="birthdaySotrudnika"/></div>
+        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('birthdaySotrudnika')}" th:errors="*{birthdaySotrudnika}"></div>
+
+        <label>Login</label>
+        <div style="width: 250px; height: 40px; margin: 1px"><input th:field="*{username}" type="text" name="username"/></div>
+        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('username')}" th:errors="*{username}"></div>
+
+        <label>Password</label>
+        <div style="width: 250px; height: 40px; margin: 1px"><input th:field="*{password}" type="password" name="password"/></div>
+        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('password')}" th:errors="*{password}"></div>
+
+        <div style="width: 200px; height: 40px; margin: 1px"><input type="submit" value="Зарегистрировать сотрудника"/></div>
+
+    </form>
+    <form th:action="${'/admin/home'}" method="get">
+        <input type="submit" value="Назад" class="btn btn-primary">
+    </form>
+</div>
+</body>
+</html>

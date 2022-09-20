@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Добавление нового оружия</title>
+</head>
+<body>
+
+<div th:insert="head/header"></div>
+
+<div align="center">
+    <h1>Добавление оружия</h1>
+    <form th:action = "${'/weapon/add'}" method="post" th:object="${weapon}">
+
+        <input th:field="*{nazvanieWeapon}" style="width: 250px; height: 40px; margin: 2px" type="text" name="nazvanieWeapon" placeholder="Введите название оружия"><br>
+        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('nazvanieWeapon')}" th:errors="*{nazvanieWeapon}"></div><br>
+
+        <input th:field="*{tipPatrWeapon}" style="width: 250px; height: 40px; margin: 2px" type="text" name="tipPatrWeapon" placeholder="Введите тип патронов оружия"><br>
+        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('tipPatrWeapon')}" th:errors="*{tipPatrWeapon}"></div><br>
+
+        <input th:field="*{godProizWeapon}" style="width: 250px; height: 40px; margin: 2px" type="number" name="godProizWeapon" placeholder="Введите год производства"><br>
+        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('godProizWeapon')}" th:errors="*{godProizWeapon}"></div><br>
+
+
+        <select style="margin-bottom: 10px" name="licenzia">
+            <div  th:each="lic : ${licenzias}">
+                <option th:value="${lic.id}" th:text="${'Номер лицензии: '+ lic.nomerLicenzii +', Орган лицензии: '+ lic.organLicenzii}"></option>
+            </div>
+        </select>
+        <br>
+        <select style="margin-bottom: 10px" name="postav">
+            <div  th:each="pos : ${postavs}">
+                <option th:value="${pos.id}" th:text="${'Название поставщика: '+ pos.nazvaniePostav +', Город поставщика: '+ pos.getGorodPost().getNazvanieGorodaPost()}"></option>
+            </div>
+        </select>
+        <br>
+        <button type="submit">Добавить оружие</button>
+    </form>
+</div>
+
+</body>
+</html>

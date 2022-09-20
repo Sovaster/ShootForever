@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Добавление нового полигона</title>
+</head>
+<body>
+
+<div th:insert="head/header"></div>
+
+<div align="center">
+    <h1>Добавление полигона</h1>
+    <form th:action = "${'/poligon/add'}" method="post" th:object="${poligons}">
+
+        <input th:field="*{nomerPoligona}" style="width: 250px; height: 40px; margin: 2px" type="text" name="nomerPoligona" placeholder="Введите номер полигона"><br>
+        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('nomerPoligona')}" th:errors="*{nomerPoligona}"></div><br>
+
+        <input th:field="*{colichMestPoligona}" style="width: 250px; height: 40px; margin: 2px" type="text" name="colichMestPoligona" placeholder="Введите кол-во мест"><br>
+        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('colichMestPoligona')}" th:errors="*{colichMestPoligona}"></div><br>
+
+        <select style="margin-bottom: 10px" name="adresPoligon">
+            <div  th:each="adpoly : ${adresPoligons}">
+                <option th:value="${adpoly.id}" th:text="${'Адрес: г.'+ adpoly.gorodPoligona +', ул.'+ adpoly.streetPoligona +', д.'+ adpoly.domPoligona +', к.'+ adpoly.korpusPoligona}"></option>
+            </div>
+        </select>
+        <br>
+        <button type="submit">Добавить полигон</button>
+    </form>
+</div>
+
+</body>
+</html>

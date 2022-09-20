@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Добавление поставщика</title>
+</head>
+<body>
+
+<div th:insert="head/header"></div>
+
+<div align="center">
+    <h1>Добавление поставщика</h1>
+    <form th:action = "${'/postav/add'}" method="post" th:object="${postav}">
+
+        <input th:field="*{nazvaniePostav}" style="width: 250px; height: 40px; margin: 2px" type="text" name="nazvaniePostav" placeholder="Введите название поставщика"><br>
+        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('nazvaniePostav')}" th:errors="*{nazvaniePostav}"></div><br>
+
+        <div th:if="${#messages}">
+            <p th:text="${message}"></p>
+        </div>
+
+        <select style="margin-bottom: 10px" name="gorod">
+            <div th:each="post : ${gorodPosts}">
+                <option th:value="${post.id}" th:text="${post.nazvanieGorodaPost}"></option>
+            </div>
+        </select><br>
+
+        <button type="submit">Добавить поставщика</button>
+    </form>
+</div>
+
+</body>
+</html>

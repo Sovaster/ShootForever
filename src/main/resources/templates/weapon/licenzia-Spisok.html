@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+    <title>Лицензии</title>
+</head>
+<body>
+
+<div th:insert="head/header"></div>
+
+<div align="center">
+    <h1>-ВСЕ ЛИЦЕНЗИИ-</h1>
+    <h4 style="margin: 5px"><a href="/licenzia/add"> Добавить лицензию</a></h4>
+    <table>
+        <div th:each="lic : ${licenzias}">
+            <h5>---------------------------------------------------------</h5>
+            <h4 th:text="${'Номер лицензии: '+lic.getNomerLicenzii()}" style="display: inline-block"></h4><br>
+            <h4 th:text="${'Орган выдачи лицензии: '+lic.getOrganLicenzii()}" style="display: inline-block"></h4><br>
+            <h4 th:text="${'Дата начала: '+lic.getDataStartLicenzii()}" style="display: inline-block"></h4><br>
+            <h4 th:text="${'Дата окончания: '+lic.getDataFinalLicenzii()}" style="display: inline-block"></h4><br>
+            <form th:action="'/licenzia/' + ${lic.id} + '/remove'" method="post" th:object="${licenzias}">
+                <button type="submit">Удалить</button>
+            </form>
+        </div>
+    </table>
+</div>
+
+</body>
+</html>

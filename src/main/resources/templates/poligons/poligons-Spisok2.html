@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+    <title>Полигоны</title>
+</head>
+<body>
+
+<div th:insert="head/header"></div>
+
+<div align="center">
+    <h1>-ВСЕ ПОЛИГОНЫ-</h1>
+    <div th:if="${#messages}">
+        <h5 th:text="${message}"></h5>
+    </div>
+    <table>
+        <div th:each="poly : ${poligons}">
+            <h5>---------------------------------------------------------</h5>
+            <h4 th:text="${'Номер полигона: '+poly.getNomerPoligona()}" ></h4>
+            <h4 th:text="${'Кол-во мест полигона: '+poly.getColichMestPoligona()}" ></h4>
+            <h4 th:text="${'Адрес полигона: г.'+poly.getAdresPoligon().getGorodPoligona()+','}" style="display: inline-block"></h4>
+            <h4 th:text="${'ул.'+poly.getAdresPoligon().getStreetPoligona()+','}" style="display: inline-block"></h4>
+            <h4 th:text="${'д.'+poly.getAdresPoligon().getDomPoligona()+','}" style="display: inline-block"></h4>
+            <h4 th:text="${'k.'+poly.getAdresPoligon().getKorpusPoligona()}" style="display: inline-block"></h4>
+            <form th:action="'/poligon/' + ${poly.getId()} + '/remove'" method="post">
+                <button type="submit">Удалить</button>
+            </form>
+        </div>
+    </table>
+</div>
+
+</body>
+</html>

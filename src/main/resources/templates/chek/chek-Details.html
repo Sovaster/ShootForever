@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+  <title>Подробности</title>
+</head>
+<body>
+
+<div th:insert="head/header"></div>
+
+<div align="center" th:each="sea : ${seansi}">
+  <h1>Подробная информация про сеанс</h1>
+    <h4 th:text="${'Дата сеанса: '+sea.getDataSeansa()}" ></h4>
+    <h4 th:text="${'Время сеанса: '+sea.getTimeSeansa()}" ></h4>
+    <h4 th:text="${'Продолжительность сеанса: '+sea.getProdoljSeansa()}" ></h4>
+    <h4 th:text="${'Оружие: '+sea.getWeapon().getNazvanieWeapon()}" ></h4>
+    <h4 th:text="${'Кол-во патронов: '+sea.getColichBulletSeansa()}" ></h4>
+    <h4 th:text="${'Тип патронов: '+sea.getWeapon().getTipPatrWeapon()}" ></h4>
+    <h4 th:text="${'Цена сеанса: '+sea.getPriceSeansa()}" ></h4>
+    <h4 th:text="${'Адрес полигона: г.'+sea.getPoligons().getAdresPoligon().getGorodPoligona()+','}" style="display: inline-block"></h4>
+    <h4 th:text="${'ул.'+sea.getPoligons().getAdresPoligon().getStreetPoligona()+','}" style="display: inline-block"></h4>
+    <h4 th:text="${'д.'+sea.getPoligons().getAdresPoligon().getDomPoligona()+','}" style="display: inline-block"></h4>
+    <h4 th:text="${'k.'+sea.getPoligons().getAdresPoligon().getKorpusPoligona()}" style="display: inline-block"></h4>
+  <form th:action="'/seansi/' + ${sea.getId()} + '/remove'" method="post">
+    <button type="submit">Удалить</button>
+  </form>
+</div>
+
+</body>
+</html>

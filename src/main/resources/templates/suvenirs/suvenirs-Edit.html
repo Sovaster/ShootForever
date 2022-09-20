@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Редактирование сувенира</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<div th:insert="head/header"></div>
+
+<div align="center" th:each="suv : ${suvenirs}">
+    <h1>Редактирование сувенира</h1>
+    <form th:action="'/suvenirs/' + ${suv.id} + '/edit'" method="post" th:object="${suvenirs}">
+
+        <input th:field="*{nazvanieSuvenira}" th:value="${suv.getNazvanieSuvenira()}" style="width: 250px; height: 40px; margin: 2px" type="text" name="nazvanieSuvenira" placeholder="Введите название"><br>
+        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('nazvanieSuvenira')}" th:errors="*{nazvanieSuvenira}"></div><br>
+
+        <textarea th:field="*{opisanieSuvenira}" th:value="${suv.getOpisanieSuvenira()}" style="width: 250px; height: 40px; margin: 2px" type="text" name="opisanieSuvenira" placeholder="Введите описание"></textarea><br>
+        <div style="width: 250px; height: 100px; margin: 2px" th:if="*{#fields.hasErrors('opisanieSuvenira')}" th:errors="*{opisanieSuvenira}"></div><br>
+
+        <button type="submit">Сохранить</button>
+    </form>
+</div>
+
+</body>
+</html>

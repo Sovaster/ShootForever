@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+    <title>Города поставщиков</title>
+</head>
+<body>
+
+<div th:insert="head/header"></div>
+
+<div align="center">
+    <h1>-ВСЕ ГОРОДА ПОСТАВЩИКОВ-</h1>
+    <h4 style="margin: 5px"><a href="/gorodPostav/add"> Добавить город</a></h4>
+    <table>
+        <div th:each="pos : ${gorodPosts}">
+            <h5>---------------------------------------------------------</h5>
+            <h4 th:text="${pos.getNazvanieGorodaPost()}" style="display: inline-block"></h4>
+            <form th:action="'/gorodPostav/' + ${pos.id} + '/remove'" method="post">
+                <button type="submit">Удалить</button>
+            </form>
+        </div>
+    </table>
+</div>
+
+</body>
+</html>
