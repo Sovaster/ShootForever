@@ -1,6 +1,8 @@
 package com.example.ShootForever.Controllers;
 
 import com.example.ShootForever.Models.AdresPoligon;
+import com.example.ShootForever.Models.Klienti;
+import com.example.ShootForever.Models.Poligons;
 import com.example.ShootForever.Repo.AdresPoligonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 
 @Controller
 public class AdresPoligonController
@@ -58,12 +61,6 @@ public class AdresPoligonController
             return "/poligons/adresPoligon-Edit";
         }
         adresPoligonRepository.save(adresPoligon);
-        return "redirect:/poligons/spisok";
-    }
-    @PostMapping("/poligons/{id}/remove")
-    public String PoligonsDelete(@PathVariable("id")long id, Model model){
-        AdresPoligon adresPoligon = adresPoligonRepository.findById(id).orElseThrow();
-        adresPoligonRepository.delete(adresPoligon);
         return "redirect:/poligons/spisok";
     }
 }

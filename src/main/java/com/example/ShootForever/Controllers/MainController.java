@@ -1,5 +1,6 @@
 package com.example.ShootForever.Controllers;
 
+import com.example.ShootForever.Models.User;
 import com.example.ShootForever.Repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
