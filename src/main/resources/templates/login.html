@@ -4,26 +4,39 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
   <title>Вход</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        rel="stylesheet">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"
+        rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
+        rel="stylesheet">
+  <link href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        rel="stylesheet">
+  <link href="./CSS/style.css"
+        rel="stylesheet">
 </head>
 <body>
-<div align="center">
-  <div th:if="${param.error}">
-    Неверный логин или пароль
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <form th:action="@{/login}" method="post" class="box">
+          <h1>Login</h1>
+          <div class="text-muted" th:if="${param.error}">
+            Неверный логин или пароль
+          </div>
+          <div class="text-muted" th:if="${param.logout}">
+            Вы вышли из аккаунта
+          </div>
+          <input type="text" name="username" placeholder="Username">
+          <input type="password" name="password" placeholder="Password">
+          <input type="submit"value="Login">
+        </form>
+      </div>
+    </div>
   </div>
-  <div th:if="${param.logout}">
-    Вы вышли из аккаунта
-  </div>
-  <form th:action="@{/login}" method="post">
-    <h1>-ЛОГИН-</h1>
-    <label>Login:</label>
-    <div style="width: 250px; height: 40px; margin: 1px"><input type="text" name="username"/></div>
-    <label>Password:</label>
-    <div style="width: 250px; height: 40px; margin: 1px"><input type="password" name="password"/></div>
-    <div style="width: 100px; height: 40px; margin: 1px"><input type="submit" value="Войти"/></div>
-  </form>
-<!--  <form th:action="${'/registration'}" method="get">-->
-<!--    <input type="submit" value="Регистрация">-->
-<!--  </form>-->
 </div>
+
 </body>
 </html>

@@ -4,57 +4,63 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
     <title>Регистрация</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"
+          rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
+          rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          rel="stylesheet">
+    <link href="./CSS/style.css"
+          rel="stylesheet">
 </head>
 <body>
-<div align="center">
-    <div th:if="${#messages}">
-        <p th:text="${message}"></p>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <form th:action="@{/registration}" th:object="${user}" method="post" class="box">
+                    <h1>Add_User</h1>
+                    <div class="text-muted" th:if="${#messages}">
+                        <p th:text="${message}"></p>
+                    </div>
+
+                    <input th:field="*{familiaSotrudnika}" type="text" name="familiaSotrudnika" placeholder="Фамилия">
+                    <div class="text-muted" th:if="*{#fields.hasErrors('nameSotrudnika')}" th:errors="*{nameSotrudnika}"></div>
+
+                    <input th:field="*{nameSotrudnika}" type="text" name="nameSotrudnika" placeholder="Имя">
+                    <div class="text-muted" th:if="*{#fields.hasErrors('nameSotrudnika')}" th:errors="*{nameSotrudnika}"></div>
+
+                    <input th:field="*{otchSotrudnika}" type="text" name="otchSotrudnika" placeholder="Отчество">
+                    <div class="text-muted" th:if="*{#fields.hasErrors('otchSotrudnika')}" th:errors="*{otchSotrudnika}"></div>
+
+                    <input th:field="*{pasportSotrudnika}" type="number" name="pasportSotrudnika" placeholder="Паспорт">
+                    <div class="text-muted" th:if="*{#fields.hasErrors('pasportSotrudnika')}" th:errors="*{pasportSotrudnika}"></div>
+
+                    <input th:field="*{telephonSotrudnika}" type="number" name="telephonSotrudnika" placeholder="Телефон">
+                    <div class="text-muted" th:if="*{#fields.hasErrors('telephonSotrudnika')}" th:errors="*{telephonSotrudnika}"></div>
+
+                    <input th:field="*{mailSotrudnika}" type="email" name="mailSotrudnika" placeholder="Почта">
+                    <div class="text-muted" th:if="*{#fields.hasErrors('mailSotrudnika')}" th:errors="*{mailSotrudnika}"></div>
+
+                    <input th:field="*{birthdaySotrudnika}" type="date" name="birthdaySotrudnika" placeholder="Дата рождения">
+                    <div class="text-muted" th:if="*{#fields.hasErrors('birthdaySotrudnika')}" th:errors="*{birthdaySotrudnika}"></div>
+
+                    <input th:field="*{username}" type="text" name="username" placeholder="Username">
+                    <div class="text-muted" th:if="*{#fields.hasErrors('username')}" th:errors="*{username}"></div>
+
+                    <input th:field="*{password}" type="password" name="password" placeholder="Password">
+                    <div class="text-muted" th:if="*{#fields.hasErrors('password')}" th:errors="*{password}"></div>
+
+                    <input type="submit" value="Registration">
+
+                </form>
+            </div>
+        </div>
     </div>
-    <h1>-РЕГИСТРАЦИЯ-</h1>
-    <form th:action="@{/registration}" method="post" th:object="${user}">
-
-        <label>Фамилия</label>
-        <div style="width: 250px; height: 40px; margin: 1px"><input th:field="*{familiaSotrudnika}" type="text" name="familiaSotrudnika"/></div>
-        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('familiaSotrudnika')}" th:errors="*{familiaSotrudnika}"></div>
-
-        <label>Имя</label>
-        <div style="width: 250px; height: 40px; margin: 1px"><input th:field="*{nameSotrudnika}" type="text" name="nameSotrudnika"/></div>
-        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('nameSotrudnika')}" th:errors="*{nameSotrudnika}"></div>
-
-        <label>Отчество</label>
-        <div style="width: 250px; height: 40px; margin: 1px"><input th:field="*{otchSotrudnika}" type="text" name="otchSotrudnika"/></div>
-        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('otchSotrudnika')}" th:errors="*{otchSotrudnika}"></div>
-
-        <label>Паспорт</label>
-        <div style="width: 250px; height: 40px; margin: 1px"><input th:field="*{pasportSotrudnika}" type="number" name="pasportSotrudnika"/></div>
-        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('pasportSotrudnika')}" th:errors="*{pasportSotrudnika}"></div>
-
-        <label>Телефон</label>
-        <div style="width: 250px; height: 40px; margin: 1px"><input th:field="*{telephonSotrudnika}" type="number" name="telephonSotrudnika"/></div>
-        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('telephonSotrudnika')}" th:errors="*{telephonSotrudnika}"></div>
-
-        <label>Почта</label>
-        <div style="width: 250px; height: 40px; margin: 1px"><input th:field="*{mailSotrudnika}" type="email" name="mailSotrudnika"/></div>
-        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('mailSotrudnika')}" th:errors="*{mailSotrudnika}"></div>
-
-        <label>Дата рождения</label>
-        <div style="width: 250px; height: 40px; margin: 1px"><input th:field="*{birthdaySotrudnika}" type="date" name="birthdaySotrudnika"/></div>
-        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('birthdaySotrudnika')}" th:errors="*{birthdaySotrudnika}"></div>
-
-        <label>Login</label>
-        <div style="width: 250px; height: 40px; margin: 1px"><input th:field="*{username}" type="text" name="username"/></div>
-        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('username')}" th:errors="*{username}"></div>
-
-        <label>Password</label>
-        <div style="width: 250px; height: 40px; margin: 1px"><input th:field="*{password}" type="password" name="password"/></div>
-        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('password')}" th:errors="*{password}"></div>
-
-        <div style="width: 200px; height: 40px; margin: 1px"><input type="submit" value="Зарегистрировать сотрудника"/></div>
-
-    </form>
-    <form th:action="${'/admin/home'}" method="get">
-        <input type="submit" value="Назад" class="btn btn-primary">
-    </form>
 </div>
+
 </body>
 </html>
