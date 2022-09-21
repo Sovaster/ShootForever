@@ -2,22 +2,22 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
-    <title>Сеансы</title>
+    <title>Чеки</title>
 </head>
 <body>
 
 <div th:insert="head/header"></div>
 
 <div align="center">
-    <h1>-ВСЕ СЕАНСЫ-</h1>
-    <h4 style="margin: 5px"><a href="/seansi/add"> Добавить сеанс</a></h4>
+    <h1>-ВСЕ ЧЕКИ-</h1>
+    <h4 style="margin: 5px"><a href="/chek/add"> Добавить чек</a></h4>
     <table>
-        <div th:each="sea : ${seansi}">
+        <div th:each="ch : ${chek}">
             <h5>---------------------------------------------------------</h5>
-            <h4 th:text="${'Дата сеанса: '+sea.getDataSeansa()}" ></h4>
-            <h4 th:text="${'Время сеанса: '+sea.getTimeSeansa()}" ></h4>
-            <h4 th:text="${'Продолжительность сеанса: '+sea.getProdoljSeansa()}" ></h4>
-            <h5><a th:href="'/seansi/' + ${sea.id}"> Подробнее </a></h5>
+            <h4 th:text="${'Дата и время: '+ch.getDataChek()+' '+ch.getTimeChek()}" ></h4>
+            <h4 th:text="${'Кол-во человек: '+ch.getColichChek()}" ></h4>
+            <h4 th:text="${'Сумма чека: '+ch.getFinalPriceChek()}" ></h4>
+            <h5><a th:href="'/chek/' + ${ch.id}"> Подробнее </a></h5>
         </div>
     </table>
 </div>

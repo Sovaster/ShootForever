@@ -8,20 +8,33 @@
 
 <div th:insert="head/header"></div>
 
-<div align="center" th:each="sea : ${seansi}">
-  <h1>Подробная информация про сеанс</h1>
-    <h4 th:text="${'Дата сеанса: '+sea.getDataSeansa()}" ></h4>
-    <h4 th:text="${'Время сеанса: '+sea.getTimeSeansa()}" ></h4>
-    <h4 th:text="${'Продолжительность сеанса: '+sea.getProdoljSeansa()}" ></h4>
-    <h4 th:text="${'Оружие: '+sea.getWeapon().getNazvanieWeapon()}" ></h4>
-    <h4 th:text="${'Кол-во патронов: '+sea.getColichBulletSeansa()}" ></h4>
-    <h4 th:text="${'Тип патронов: '+sea.getWeapon().getTipPatrWeapon()}" ></h4>
-    <h4 th:text="${'Цена сеанса: '+sea.getPriceSeansa()}" ></h4>
-    <h4 th:text="${'Адрес полигона: г.'+sea.getPoligons().getAdresPoligon().getGorodPoligona()+','}" style="display: inline-block"></h4>
-    <h4 th:text="${'ул.'+sea.getPoligons().getAdresPoligon().getStreetPoligona()+','}" style="display: inline-block"></h4>
-    <h4 th:text="${'д.'+sea.getPoligons().getAdresPoligon().getDomPoligona()+','}" style="display: inline-block"></h4>
-    <h4 th:text="${'k.'+sea.getPoligons().getAdresPoligon().getKorpusPoligona()}" style="display: inline-block"></h4>
-  <form th:action="'/seansi/' + ${sea.getId()} + '/remove'" method="post">
+<div align="center" th:each="ch : ${chek}">
+  <h1>Подробная информация про чек</h1>
+    <h4 th:text="${'Дата и время: '+ch.getDataChek()+' '+ch.getTimeChek()}" ></h4>
+    <h4 th:text="${'Кол-во человек: '+ch.getColichChek()}" ></h4>
+    <h4 th:text="${'Сумма чека: '+ch.getFinalPriceChek()}" ></h4>
+
+    <h4 th:text="${'Дата и время сеанса: '+ch.getSeansi().getDataSeansa() +' '+ch.getSeansi().getTimeSeansa()}" ></h4>
+    <h4 th:text="${'Продолжительность сеанса: '+ch.getSeansi().getProdoljSeansa()}" ></h4>
+    <h4 th:text="${'Оружие: '+ch.getSeansi().getWeapon().getNazvanieWeapon()}" ></h4>
+    <h4 th:text="${'Тип патронов: '+ch.getSeansi().getWeapon().getTipPatrWeapon()}" ></h4>
+    <h4 th:text="${'Кол-во патронов: '+ch.getSeansi().getColichBulletSeansa()}" ></h4>
+    <h4 th:text="${'Цена сеанса: '+ch.getSeansi().getPriceSeansa()}" ></h4>
+    <h4 th:text="${'Адрес полигона: г.'+ch.getSeansi().getPoligons().getAdresPoligon().getGorodPoligona()+','}" style="display: inline-block"></h4>
+    <h4 th:text="${'ул.'+ch.getSeansi().getPoligons().getAdresPoligon().getStreetPoligona()+','}" style="display: inline-block"></h4>
+    <h4 th:text="${'д.'+ch.getSeansi().getPoligons().getAdresPoligon().getDomPoligona()+','}" style="display: inline-block"></h4>
+    <h4 th:text="${'k.'+ch.getSeansi().getPoligons().getAdresPoligon().getKorpusPoligona()}" style="display: inline-block"></h4>
+    <br>
+    <h4 th:text="${'ФИО сотрудника: '+ch.getUser().getFamiliaSotrudnika()}" style="display: inline-block;margin-left: 10px"></h4>
+    <h4 th:text="${ch.getUser().getNameSotrudnika()}" style="display: inline-block"></h4>
+    <h4 th:text="${ch.getUser().getNameSotrudnika()}" style="display: inline-block"></h4>
+    <br>
+    <h4 th:text="${'ФИО Клиента: '+ch.getKlienti().getFamiliaKlienta()}" style="display: inline-block;margin-left: 10px"></h4>
+    <h4 th:text="${ch.getKlienti().getNameKlienta()}" style="display: inline-block"></h4>
+    <h4 th:text="${ch.getKlienti().getNameKlienta()}" style="display: inline-block"></h4>
+
+    <h4 th:text="${'Сувенир: '+ch.getSuvenirs().getNazvanieSuvenira()}" ></h4>
+  <form th:action="'/chek/' + ${ch.getId()} + '/remove'" method="post">
     <button type="submit">Удалить</button>
   </form>
 </div>

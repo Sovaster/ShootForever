@@ -6,6 +6,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.sql.Date;
 import java.sql.Time;
+import java.util.Collection;
 
 @Entity
 public class Seansi {
@@ -24,7 +25,7 @@ public class Seansi {
     private String colichBulletSeansa;
 
     @NotEmpty(message = "Поле не может быть пустым")
-    @Size(min = 1, max = 6, message = "От 1 до 4 символов")
+    @Size(min = 1, max = 6, message = "От 1 до 6 символов")
     private String priceSeansa;
 
     @ManyToOne(optional = true, fetch = FetchType.EAGER)
@@ -33,7 +34,10 @@ public class Seansi {
     @ManyToOne(optional = true, fetch = FetchType.EAGER)
     private Weapon weapon;
 
-    public Seansi(Date dataSeansa, String timeSeansa, String prodoljSeansa, String colichBulletSeansa, String priceSeansa, Poligons poligons, Weapon weapon) {
+    @OneToOne(optional = true, mappedBy = "seansi", cascade = CascadeType.ALL)
+    private Chek chek;
+
+    public Seansi(Date dataSeansa, String timeSeansa, String prodoljSeansa, String colichBulletSeansa, String priceSeansa, Poligons poligons, Weapon weapon, Chek chek) {
         this.dataSeansa = dataSeansa;
         this.timeSeansa = timeSeansa;
         this.prodoljSeansa = prodoljSeansa;
@@ -41,6 +45,7 @@ public class Seansi {
         this.priceSeansa = priceSeansa;
         this.poligons = poligons;
         this.weapon = weapon;
+        this.chek = chek;
     }
 
     public Seansi() {
@@ -108,5 +113,13 @@ public class Seansi {
 
     public void setWeapon(Weapon weapon) {
         this.weapon = weapon;
+    }
+
+    public Chek getChek() {
+        return chek;
+    }
+
+    public void setChek(Chek chek) {
+        this.chek = chek;
     }
 }

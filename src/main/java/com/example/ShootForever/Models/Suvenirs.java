@@ -1,14 +1,12 @@
 package com.example.ShootForever.Models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
 import java.sql.Date;
+import java.util.Collection;
 
 @Entity
 public class Suvenirs
@@ -25,9 +23,13 @@ public class Suvenirs
     @Size(min = 1, max = 300, message = "От 1 до 300 символов")
     private  String opisanieSuvenira;
 
-    public Suvenirs(String nazvanieSuvenira, String opisanieSuvenira) {
+    @OneToMany(mappedBy = "suvenirs", cascade = CascadeType.ALL)
+    private Collection<Chek> chek;
+
+    public Suvenirs(String nazvanieSuvenira, String opisanieSuvenira, Collection<Chek> chek) {
         this.nazvanieSuvenira = nazvanieSuvenira;
         this.opisanieSuvenira = opisanieSuvenira;
+        this.chek = chek;
     }
 
     public Suvenirs() {
@@ -55,5 +57,13 @@ public class Suvenirs
 
     public void setOpisanieSuvenira(String opisanieSuvenira) {
         this.opisanieSuvenira = opisanieSuvenira;
+    }
+
+    public Collection<Chek> getChek() {
+        return chek;
+    }
+
+    public void setChek(Collection<Chek> chek) {
+        this.chek = chek;
     }
 }

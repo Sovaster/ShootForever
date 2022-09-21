@@ -17,14 +17,14 @@
                 <li><a style="margin: 10px" href="/allUsers" class="btn btn-light">Все сотрудники</a></li>
                 <li><a style="margin: 10px" href="/registration" class="btn btn-light">Регистрация сотрудника</a></li>
                 <li><a style="margin: 10px" href="/registrationAdmin" class="btn btn-light">Регистрация админа</a></li>
-                <li><a style="margin: 10px" href="/" class="btn btn-light">Вернуться</a></li>
+                <li><a style="margin: 10px" href="/" class="btn btn-info">Вернуться</a></li>
+                <div style="margin: 10px">
+                    <form th:action="@{/logout}" method="post">
+                        <input type="submit" value="Выход" class="btn btn-warning">
+                    </form>
+                </div>
             </ul>
 
-            <div class="text-end">
-                <form th:action="@{/logout}" method="post">
-                    <input type="submit" value="Выход" class="btn btn-warning">
-                </form>
-            </div>
         </div>
     </div>
 </header>

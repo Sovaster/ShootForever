@@ -2,12 +2,10 @@ package com.example.ShootForever.Models;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.sql.Date;
+import java.util.Collection;
 
 @Entity
 public class Klienti
@@ -39,7 +37,10 @@ public class Klienti
     @Size(min = 1, max = 50, message = "От 1 до 50 символов")
     private  String mailKlienta;
 
-    public Klienti(String familiaKlienta, String nameKlienta, String otchKlienta, String pasportKlienta, String telephonKlienta, Date birthdayKlienta, String mailKlienta) {
+    @OneToMany(mappedBy = "klienti", cascade = CascadeType.ALL)
+    private Collection<Chek> chek;
+
+    public Klienti(String familiaKlienta, String nameKlienta, String otchKlienta, String pasportKlienta, String telephonKlienta, Date birthdayKlienta, String mailKlienta, Collection<Chek> chek) {
         this.familiaKlienta = familiaKlienta;
         this.nameKlienta = nameKlienta;
         this.otchKlienta = otchKlienta;
@@ -47,6 +48,7 @@ public class Klienti
         this.telephonKlienta = telephonKlienta;
         this.birthdayKlienta = birthdayKlienta;
         this.mailKlienta = mailKlienta;
+        this.chek = chek;
     }
 
     public Klienti() {
@@ -114,5 +116,13 @@ public class Klienti
 
     public void setMailKlienta(String mailKlienta) {
         this.mailKlienta = mailKlienta;
+    }
+
+    public Collection<Chek> getChek() {
+        return chek;
+    }
+
+    public void setChek(Collection<Chek> chek) {
+        this.chek = chek;
     }
 }

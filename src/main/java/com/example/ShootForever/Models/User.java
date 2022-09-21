@@ -49,6 +49,9 @@ public class User implements UserDetails {
     @Size(min = 8, max = 50, message = "От 8 до 50 символов")
     private String password;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Collection<Chek> chek;
+
     private boolean active;
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
@@ -121,6 +124,24 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
+    public User(String familiaSotrudnika, String nameSotrudnika, String otchSotrudnika, String pasportSotrudnika, String telephonSotrudnika, String mailSotrudnika, String birthdaySotrudnika, String username, String password, Collection<Chek> chek, boolean active, Set<Role> roles) {
+        this.familiaSotrudnika = familiaSotrudnika;
+        this.nameSotrudnika = nameSotrudnika;
+        this.otchSotrudnika = otchSotrudnika;
+        this.pasportSotrudnika = pasportSotrudnika;
+        this.telephonSotrudnika = telephonSotrudnika;
+        this.mailSotrudnika = mailSotrudnika;
+        this.birthdaySotrudnika = birthdaySotrudnika;
+        this.username = username;
+        this.password = password;
+        this.chek = chek;
+        this.active = active;
+        this.roles = roles;
+    }
+
+    public User() {
+    }
+
     public String getFamiliaSotrudnika() {
         return familiaSotrudnika;
     }
@@ -177,20 +198,11 @@ public class User implements UserDetails {
         this.birthdaySotrudnika = birthdaySotrudnika;
     }
 
-    public User(String familiaSotrudnika, String nameSotrudnika, String otchSotrudnika, String pasportSotrudnika, String telephonSotrudnika, String mailSotrudnika, String birthdaySotrudnika, String username, String password, boolean active, Set<Role> roles) {
-        this.familiaSotrudnika = familiaSotrudnika;
-        this.nameSotrudnika = nameSotrudnika;
-        this.otchSotrudnika = otchSotrudnika;
-        this.pasportSotrudnika = pasportSotrudnika;
-        this.telephonSotrudnika = telephonSotrudnika;
-        this.mailSotrudnika = mailSotrudnika;
-        this.birthdaySotrudnika = birthdaySotrudnika;
-        this.username = username;
-        this.password = password;
-        this.active = active;
-        this.roles = roles;
+    public Collection<Chek> getChek() {
+        return chek;
     }
 
-    public User() {
+    public void setChek(Collection<Chek> chek) {
+        this.chek = chek;
     }
 }
